@@ -1,0 +1,22 @@
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  annotations:
+    meta.helm.sh/release-name: backend-quarkus
+    meta.helm.sh/release-namespace: teste
+  labels:
+    app.kubernetes.io/instance: backend-quarkus
+    app.kubernetes.io/managed-by: Helm
+    app.kubernetes.io/name: helm-chart
+    app.kubernetes.io/version: 1.16.0
+    helm.sh/chart: helm-chart-0.1.0
+    release: kube-prometheus
+  name: servicemonitor-backend-quarkus
+  namespace: teste
+spec:
+  endpoints:
+  - honorLabels: true
+    port: http
+  selector:
+    matchLabels:
+      app.kubernetes.io/instance: backend-quarkus
